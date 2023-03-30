@@ -38,7 +38,12 @@ public class PlayerMotor : MonoBehaviour
         {
             motorState = PlayerMotorState.running;
         }
+        if (motorState == PlayerMotorState.crouching) 
+        {
+            Sprinting = false;
+        }
     }
+    
 
     //Recive the input for out InputManager.cs and apply them to out character controller
     public void ProcessMove(Vector2 input) 

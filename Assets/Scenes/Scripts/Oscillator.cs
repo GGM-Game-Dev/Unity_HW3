@@ -7,7 +7,7 @@ public class Oscillator : MonoBehaviour
 
     public float Speed = 2f;
     private float range = Mathf.PI;
-    private float from,to,direction,offset;
+    private float from, to, direction, offset;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,16 +23,16 @@ public class Oscillator : MonoBehaviour
         {
             direction = -1;
         }
-        else if (transform.position.x < from) 
+        else if (transform.position.x < from ) 
         {
             direction = 1;
         }
         offset = (transform.position.x - from) * 2;
-        offset = Mathf.Clamp(offset , 0.15f , Mathf.PI - 0.15f);
+        offset = Mathf.Clamp(offset, 0.15f, Mathf.PI - 0.15f);
         offset = offset - (Mathf.PI / 2);
         offset = Mathf.Cos(offset);
         Debug.Log(transform.position.x);
-        transform.position +=new Vector3(direction * Time.deltaTime * offset * Speed, 0, 0);
+        transform.position += new Vector3(direction * Time.deltaTime * offset * Speed, 0, 0);
 
     }
 }
