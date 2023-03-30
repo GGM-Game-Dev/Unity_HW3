@@ -118,5 +118,5 @@ public class PlayerMotor : MonoBehaviour
         isCrouching = false;
         this.transform.localScale = Vector3.one;
         motorState = PlayerMotorState.walking;
-    }   
+    }  
 }
