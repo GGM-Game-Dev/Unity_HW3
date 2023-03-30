@@ -15,7 +15,7 @@ public class Heart : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.localScale += new Vector3(Direction * Speed * Time.deltaTime, Direction * Speed *Time.deltaTime, Direction*Speed*Time.deltaTime);
+        transform.localScale += new Vector3(Direction * Speed * Time.deltaTime, Direction * Speed * Time.deltaTime, Direction * Speed * Time.deltaTime);
         if (transform.localScale.x > MaxSize)
         {
             Direction = -1;
