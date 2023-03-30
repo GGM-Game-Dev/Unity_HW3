@@ -23,7 +23,7 @@ public class Oscillator : MonoBehaviour
         {
             direction = -1;
         }
-        else if (transform.position.x < from ) 
+        else if (transform.position.x < from)
         {
             direction = 1;
         }

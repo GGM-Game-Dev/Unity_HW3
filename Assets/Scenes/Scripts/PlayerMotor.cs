@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class PlayerMotor : MonoBehaviour
 {
-    enum PlayerMotorState 
+    enum PlayerMotorState
     {
         walking,
         running,
         crouching,
         inAir
     }
-    private PlayerMotorState motorState=PlayerMotorState.walking;
+    private PlayerMotorState motorState = PlayerMotorState.walking;
     private CharacterController controller;
     private Vector3 playerVelocity;
     public float speed = 5f;
@@ -30,39 +30,37 @@ public class PlayerMotor : MonoBehaviour
     void Update()
     {
         IsGrounded = controller.isGrounded;
-        if (!IsGrounded) 
+        if (!IsGrounded)
         {
             motorState = PlayerMotorState.inAir;
         }
-        else if (Sprinting) 
+        else if (Sprinting)
         {
             motorState = PlayerMotorState.running;
         }
-        if (motorState == PlayerMotorState.crouching) 
+        if (motorState == PlayerMotorState.crouching)
         {
             Sprinting = false;
         }
     }
-    
 
-    //Recive the input for out InputManager.cs and apply them to out character controller
-    public void ProcessMove(Vector2 input) 
+    public void ProcessMove(Vector2 input)
     {
         Vector3 moveDirection = Vector3.zero;
         moveDirection.x = input.x;
         moveDirection.z = input.y;
         controller.Move(transform.TransformDirection(moveDirection) * speed * Time.deltaTime);
         playerVelocity.y += graviry * Time.deltaTime;
-        if (IsGrounded && playerVelocity.y < 0) 
+        if (IsGrounded && playerVelocity.y < 0)
         {
             playerVelocity.y = -2f;
         }
         controller.Move(playerVelocity * Time.deltaTime);
     }
 
-    public void Jump() 
+    public void Jump()
     {
-        if (IsGrounded && !isCrouching) 
+        if (IsGrounded && !isCrouching)
         {
             playerVelocity.y = Mathf.Sqrt(jumpHeight * -3.0f * graviry);
         }
@@ -70,9 +68,9 @@ public class PlayerMotor : MonoBehaviour
     /**
      * Sptinting is not in crouch mode
      */
-    public void Sprint() 
+    public void Sprint()
     {
-        if (!isCrouching )
+        if (!isCrouching)
         {
             speed = 10f;
             Sprinting = true;
@@ -89,13 +87,13 @@ public class PlayerMotor : MonoBehaviour
     /**
      * Stop sprinting and move to walk state
      */
-    public void StopSprint() 
+    public void StopSprint()
     {
         if (!isCrouching)
         {
             speed = 5f;
             Sprinting = false;
-            motorState= PlayerMotorState.walking;
+            motorState = PlayerMotorState.walking;
         }
         else
         //Crouch -> cannot walk
@@ -104,9 +102,9 @@ public class PlayerMotor : MonoBehaviour
             motorState = PlayerMotorState.crouching;
         }
     }
-    public void Crouch() 
+    public void Crouch()
     {
-        if (IsGrounded) 
+        if (IsGrounded)
         {
             isCrouching = true;
             Vector3 crouchSizeVector = new Vector3(1, 0.6f, 1);
@@ -115,12 +113,10 @@ public class PlayerMotor : MonoBehaviour
 
         }
     }
-    public void StopCrouch() 
+    public void StopCrouch()
     {
-        isCrouching=false;
+        isCrouching = false;
         this.transform.localScale = Vector3.one;
         motorState = PlayerMotorState.walking;
-    }
-
-    
+    }   
 }
