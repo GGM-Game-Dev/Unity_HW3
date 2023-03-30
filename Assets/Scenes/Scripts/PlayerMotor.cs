@@ -17,7 +17,7 @@ public class PlayerMotor : MonoBehaviour
     public float speed = 5f;
     private bool IsGrounded;
     public float graviry = -9.8f;
-    public float jumpHeight = 3f;
+    public float jumpHeight = 3.5f;
     private bool Sprinting = false;
     private bool isCrouching = false;
     // Start is called before the first frame update
@@ -118,5 +118,5 @@ public class PlayerMotor : MonoBehaviour
         isCrouching = false;
         this.transform.localScale = Vector3.one;
         motorState = PlayerMotorState.walking;
-    }  
+    }
 }
